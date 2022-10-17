@@ -149,6 +149,50 @@ void show_car(Car_4 car)
     std::cout << "Car number:" << car.number.charnumber << car.number.intnumber << std::endl;
 }
 
+void show_car_array(Car_4* cars)
+{
+    for (int i = 0; i < 5; i++)
+    {
+        std::cout << "Car color:" << cars[i].color << std::endl;
+        std::cout << "Car model:" << cars[i].model << std::endl;
+        std::cout << "Car number:" << cars[i].number.intnumber << std::endl;
+    }
+}
+
+void change_car_in_array(Car_4* car, int position)
+{
+    int answer;
+    std::cout << "Set color:";
+    std::cin >> car[position].color;
+    std::cout << "Set model:";
+    std::cin >> car[position].model;
+    std::cout << "Is the number of the car consists of letters(1) or of numbers(2)?";
+    std::cin >> answer;
+    if (answer == 1)
+    {
+        std::cout << "Enter number of the car:";
+        std::cin >> car[position].number.charnumber;
+    }
+    else if (answer == 2)
+    {
+        std::cout << "Enter number of the car:";
+        std::cin >> car[position].number.intnumber;
+    }
+}
+
+Car_4* find_car_by_number(Car_4* cars, int number)
+{
+    Car_4* for_find;
+    for (int i = 0; i < 5; i++)
+    {
+        if (cars[i].number.intnumber == number)
+        {
+            for_find = cars+i;
+            return for_find;
+        }
+    }
+}
+
 int main()
 {
     
@@ -334,6 +378,12 @@ int main()
     array_of_cars[4].color = "black";
     array_of_cars[4].model = "TLS";
     array_of_cars[4].number.intnumber = 9999;
+
+    show_car_array(array_of_cars);
+
+    Car_4* my_car;
+    my_car = find_car_by_number(array_of_cars, 4899);
+    std::cout << my_car->model;
 }
 
 //task 1
